@@ -1,0 +1,8 @@
+# SportR Basketball Configuration
+
+data:
+  root: "data/sportr"
+  sport_filter: "basketball"
+
+model:
+  num_q2_classes: 8  # basketball foul classes

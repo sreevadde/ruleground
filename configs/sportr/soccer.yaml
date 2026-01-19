@@ -1,0 +1,8 @@
+# SportR Soccer Configuration
+
+data:
+  root: "data/sportr"
+  sport_filter: "soccer"
+
+model:
+  num_q2_classes: 6  # soccer foul classes

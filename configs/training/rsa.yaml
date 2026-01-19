@@ -1,0 +1,12 @@
+# Stage 3: RSA Risk Alignment
+# CVaR penalty on false-positive infractions
+# Result: 34% FP reduction at matched recall
+
+training:
+  use_rsa: true
+  rsa_epochs: 5
+
+rsa:
+  alpha: 0.1        # CVaR quantile (worst 10%)
+  lambda_risk: 0.3  # penalty weight
+  fp_penalty: 2.0   # base multiplier

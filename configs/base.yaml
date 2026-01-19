@@ -1,0 +1,54 @@
+# RuleGround Base Configuration
+# Paper: Bridging the Perceptual Gap
+
+model:
+  encoder:
+    name: "MCG-NJU/videomae-base"
+    freeze: true
+  rgm:
+    num_heads: 8
+    hidden_dim: 256
+    dropout: 0.1
+    use_rope: true
+    use_flash_attn: true
+  reasoning_head:
+    hidden_dim: 256
+    dropout: 0.1
+  num_q1_classes: 2
+  num_q2_classes: 17
+
+data:
+  root: "data/sportr"
+  num_frames: 16
+  frame_size: [224, 224]
+  num_workers: 4
+
+training:
+  batch_size: 16
+  lr: 1.0e-4
+  weight_decay: 0.01
+  warmup_steps: 500
+  max_epochs: 30
+  gamma: 0.5      # predicate loss weight
+  delta: 0.1      # consistency loss weight
+  pretrain_epochs: 10
+  use_grpo: true
+  grpo_epochs: 5
+  use_rsa: true
+  rsa_epochs: 5
+
+grpo:
+  group_size: 8
+  clip_ratio: 0.2
+  kl_coef: 0.1
+  predicate_dropout: 0.1  # stochasticity fix for discriminative GRPO
+
+rsa:
+  alpha: 0.1        # CVaR quantile (worst 10%)
+  lambda_risk: 0.3  # FP penalty weight
+  fp_penalty: 2.0   # base FP penalty multiplier
+
+logging:
+  project: "ruleground"
+  use_wandb: false
+  log_every_n_steps: 50

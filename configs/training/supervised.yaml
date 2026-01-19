@@ -1,0 +1,16 @@
+# Stage 1: Supervised Pre-training
+# L = L_task + gamma * L_pred + delta * L_cons
+
+training:
+  batch_size: 16
+  lr: 1.0e-4
+  weight_decay: 0.01
+  warmup_steps: 500
+  max_epochs: 10
+  gamma: 0.5
+  delta: 0.1
+  pretrain_epochs: 10
+  use_grpo: false
+  use_rsa: false
+  grad_clip: 1.0
+  use_amp: false

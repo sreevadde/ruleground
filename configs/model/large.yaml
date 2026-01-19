@@ -1,0 +1,17 @@
+# Model: Large (ViT-L backbone)
+
+model:
+  encoder:
+    name: "MCG-NJU/videomae-large"
+    freeze: true
+  rgm:
+    num_heads: 16
+    hidden_dim: 512
+    dropout: 0.1
+    use_rope: true
+    use_flash_attn: true
+  reasoning_head:
+    hidden_dim: 512
+    dropout: 0.1
+  num_q1_classes: 2
+  num_q2_classes: 17

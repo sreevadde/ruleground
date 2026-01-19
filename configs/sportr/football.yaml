@@ -1,0 +1,8 @@
+# SportR Football Configuration
+
+data:
+  root: "data/sportr"
+  sport_filter: "football"
+
+model:
+  num_q2_classes: 5  # football penalty classes

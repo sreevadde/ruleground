@@ -1,0 +1,17 @@
+# Model: Small (for debugging / fast iteration)
+
+model:
+  encoder:
+    name: "MCG-NJU/videomae-small"
+    freeze: true
+  rgm:
+    num_heads: 4
+    hidden_dim: 128
+    dropout: 0.1
+    use_rope: true
+    use_flash_attn: true
+  reasoning_head:
+    hidden_dim: 128
+    dropout: 0.1
+  num_q1_classes: 2
+  num_q2_classes: 17

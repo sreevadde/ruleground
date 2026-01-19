@@ -1,0 +1,13 @@
+# Stage 2: GRPO Post-training
+# Group-relative advantage estimation without learned critic
+
+training:
+  use_grpo: true
+  grpo_epochs: 5
+  lr: 1.0e-5  # lower LR for fine-tuning
+
+grpo:
+  group_size: 8
+  clip_ratio: 0.2
+  kl_coef: 0.1
+  predicate_dropout: 0.1

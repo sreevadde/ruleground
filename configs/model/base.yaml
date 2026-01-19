@@ -1,0 +1,18 @@
+# Model: Base (ViT-B backbone)
+# ~86M params total
+
+model:
+  encoder:
+    name: "MCG-NJU/videomae-base"
+    freeze: true
+  rgm:
+    num_heads: 8
+    hidden_dim: 256
+    dropout: 0.1
+    use_rope: true
+    use_flash_attn: true
+  reasoning_head:
+    hidden_dim: 256
+    dropout: 0.1
+  num_q1_classes: 2
+  num_q2_classes: 17
