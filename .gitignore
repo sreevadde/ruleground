@@ -6,3 +6,28 @@ build/
 .coverage
 .pytest_cache/
 *.egg
+*.so
+*.dylib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.venv/
+venv/
+
+# Data (user-managed)
+data/
+
+# Experiment outputs
+experiments/
+checkpoints/
+wandb/
+
+# OS
+.DS_Store
+Thumbs.db
