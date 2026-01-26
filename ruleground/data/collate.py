@@ -96,10 +96,12 @@ def sportr_collate_fn(batch: List[Dict[str, Any]]) -> Dict[str, Tensor]:
         result["predicate_weights"] = pred_weights
         result["predicate_mask"] = pred_mask
 
-    # Q5 temporal spans (if available)
-    if "q5_span" in batch[0] and batch[0]["q5_span"] is not None:
+    # Q5 temporal spans (if available — use [0,0] for samples without spans)
+    if any(item.get("q5_span") is not None for item in batch):
         q5_spans = torch.tensor(
-            [item["q5_span"] for item in batch], dtype=torch.float
+            [item["q5_span"] if item.get("q5_span") is not None else [0.0, 0.0]
+             for item in batch],
+            dtype=torch.float,
         )
         result["q5_spans"] = q5_spans
 

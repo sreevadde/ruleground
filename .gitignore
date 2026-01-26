@@ -20,8 +20,8 @@ build/
 .venv/
 venv/
 
-# Data (user-managed)
-data/
+# Data (user-managed, top-level only)
+/data/
 
 # Experiment outputs
 experiments/

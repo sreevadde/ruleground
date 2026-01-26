@@ -171,15 +171,16 @@ def compute_predicate_accuracy(
         Dict with pred_accuracy, pred_f1, pred_precision, pred_recall.
     """
     preds_binary = (pred_probs > threshold).float()
+    gt_binary = (gt_labels > threshold).float()  # Binarize GT for weak supervision
 
     if mask is not None:
         # Only evaluate on labeled predicates
         valid = mask.bool()
         p = preds_binary[valid].cpu().numpy()
-        t = gt_labels[valid].cpu().numpy()
+        t = gt_binary[valid].cpu().numpy()
     else:
         p = preds_binary.cpu().numpy().ravel()
-        t = gt_labels.cpu().numpy().ravel()
+        t = gt_binary.cpu().numpy().ravel()
 
     if len(t) == 0:
         return {"pred_accuracy": 0.0, "pred_f1": 0.0}

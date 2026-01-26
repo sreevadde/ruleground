@@ -95,9 +95,13 @@ class Evaluator:
             if "video_ids" in batch:
                 all_video_ids.extend(batch["video_ids"])
 
-        # Concatenate
+        # Concatenate (only include targets that have entries for every batch)
+        n_batches = len(all_outputs["q1_logits"]) if all_outputs["q1_logits"] else 0
         cat_out = {k: torch.cat(v) for k, v in all_outputs.items() if v}
-        cat_tgt = {k: torch.cat(v) for k, v in all_targets.items() if v}
+        cat_tgt = {
+            k: torch.cat(v) for k, v in all_targets.items()
+            if v and len(v) == n_batches
+        }
         sport_ids = torch.cat(all_sport_ids) if all_sport_ids else None
 
         # Overall metrics

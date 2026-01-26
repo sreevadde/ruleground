@@ -43,16 +43,22 @@ class WeightedBCELoss(nn.Module):
         Returns:
             Scalar loss.
         """
-        loss = F.binary_cross_entropy_with_logits(logits, targets, reduction="none")
+        # Mask out -inf logits from sport-conditional masking before BCE
+        valid = torch.isfinite(logits)
+        safe_logits = logits.clone()
+        safe_logits[~valid] = 0.0
+
+        loss = F.binary_cross_entropy_with_logits(safe_logits, targets, reduction="none")
+        loss = loss * valid.float()  # Zero out loss for masked predicates
 
         if weights is not None:
             loss = loss * weights
         if mask is not None:
             loss = loss * mask
-            denom = mask.sum().clamp(min=1.0)
-            return loss.sum() / denom
+            valid = valid & (mask > 0)
 
-        return loss.mean()
+        denom = valid.float().sum().clamp(min=1.0)
+        return loss.sum() / denom
 
 
 class RuleConsistencyLoss(nn.Module):
