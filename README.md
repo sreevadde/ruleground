@@ -2,7 +2,13 @@
 
 **Bridging the Perceptual Gap: Rule-Grounded Representations for Tactical Reasoning in Multi-Sport Video Understanding**
 
-> This repository contains the reference implementation for my RuleGround research paper. It provides the complete neuro-symbolic architecture, training pipeline, evaluation framework, and data preparation tools described in the paper.
+> This repository contains the reference implementation for the RuleGround research paper. It provides the complete neuro-symbolic architecture, training pipeline, evaluation framework, and data preparation tools described in the paper.
+
+RuleGround is the first paper in the sports adjudication trilogy:
+
+1. **RuleGround** (this repo) — Perception to predicates: grounds raw video into structured game-state predicates
+2. **[RefTrace](https://github.com/sreevadde/reftrace)** — Evidence to traces: generates verifiable reasoning traces over a rule knowledge graph
+3. **[StateTrace](https://github.com/sreevadde/statetrace)** — Traces to state transitions: adds explicit state bottleneck for per-step verification
 
 ---
 
